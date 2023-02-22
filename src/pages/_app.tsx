@@ -1,6 +1,54 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import * as React from "react";
+import Head from "next/head";
+import { AppProps } from "next/app";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import createEmotionCache from "@/utils/createEmotionCache";
+import Layout from "@/components/Layout";
+import { Provider } from "react-redux";
+import store from "@/store/store";
+import useToggleTheme from "@/hooks/useThemeToggle";
+import {
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  ThemeProvider,
+} from "@material-ui/core";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
+import Brightness7Icon from "@material-ui/icons/Brightness7";
+const clientSideEmotionCache = createEmotionCache();
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
 }
+
+function MyApp(props: MyAppProps) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { activeTheme } = useToggleTheme();
+  const [theme, setTheme] = React.useState(activeTheme);
+
+  React.useEffect(() => {
+    setTheme(activeTheme);
+  }, [activeTheme]);
+
+  return (
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Layout setTheme={setTheme}>
+            <Container maxWidth="lg">
+              <Component {...pageProps} />
+            </Container>
+          </Layout>
+        </Provider>
+      </ThemeProvider>
+    </CacheProvider>
+  );
+}
+
+export default MyApp;
