@@ -6,7 +6,7 @@ import { Product } from "@/types/types";
 import ProductCard from "@/components/ProductCard";
 import { useDispatch } from "react-redux";
 import { initCartItems } from "@/store/cartSlice";
-import { Grid, styled, Typography } from "@material-ui/core";
+import { Grid, styled, Typography } from "@mui/material";
 
 const StyledTypography = styled(Typography)({
   display: "flex",

@@ -1,7 +1,7 @@
 import React from "react";
-import { Grid, Box } from "@material-ui/core";
 import { Product } from "@/types/types";
 import ProductCard from "./ProductCard";
+import { Box, Grid } from "@mui/material";
 
 interface ProductListProps {
   products: Product[];

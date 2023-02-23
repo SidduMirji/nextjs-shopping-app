@@ -1,16 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography,
-} from "@material-ui/core";
-import { styled } from "@material-ui/core/styles";
 import { Product } from "@/types/types";
-import { AddShoppingCart } from "@material-ui/icons";
 import useProductCart from "@/hooks/useProductCart";
+import { Card, CardActions, CardContent, CardMedia, IconButton, styled, Tooltip, Typography } from "@mui/material";
+import { AddShoppingCart } from "@material-ui/icons";
 
 interface ProductCardProps {
   product: Product;
@@ -61,12 +53,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </StyledProductContent>
       <StyledCardActions>
         <Typography variant="h6">${product.price.toFixed(2)}</Typography>
+        <Tooltip title="Add to cart">
         <StyledCartButton
           aria-label="Add to cart"
           onClick={() => handleAddToCart()}
         >
           <AddShoppingCart />
         </StyledCartButton>
+        </Tooltip>
       </StyledCardActions>
     </StyledProductCard>
   );

@@ -1,8 +1,8 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from "@mui/material";
 
 const darkTheme = createTheme({
   palette: {
-    type: "dark",
+    mode: "dark",
     primary: {
       main: "#424242",
     },

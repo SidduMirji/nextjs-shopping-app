@@ -7,15 +7,8 @@ import Layout from "@/components/Layout";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import useToggleTheme from "@/hooks/useThemeToggle";
-import {
-  Box,
-  Button,
-  Container,
-  CssBaseline,
-  ThemeProvider,
-} from "@material-ui/core";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+
 const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {

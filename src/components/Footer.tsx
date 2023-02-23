@@ -1,4 +1,4 @@
-import { styled, Typography } from "@material-ui/core";
+import { styled, Typography } from "@mui/material";
 import React from "react";
 
 const StyledFooter = styled("footer")(({ theme }) => ({
@@ -8,7 +8,7 @@ const StyledFooter = styled("footer")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   padding: theme.spacing(2),
   color: theme.palette.primary.contrastText,
-  position: "fixed",
+  position: "static",
   bottom: 0,
   left: 0,
   width: "100%",

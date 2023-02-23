@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Add, Delete, Remove } from "@material-ui/icons";
 import useProductCart from "@/hooks/useProductCart";
 import { Box, Typography } from "@mui/material";
-import { IconButton, Tooltip } from "@material-ui/core";
+import { IconButton, Tooltip } from "@mui/material";
 
 interface CartItemProps {
   item: CartProduct;

@@ -1,4 +1,4 @@
-import { styled } from "@material-ui/core";
+import { styled } from "@mui/material";
 import React, { ReactNode } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -19,12 +19,16 @@ const StyledMain = styled("main")({
   paddingBottom: "10em",
 });
 
+const StyledFooter = styled(Footer)({
+  marginTop: "auto",
+});
+
 const Layout: React.FC<Props> = ({ children, setTheme }) => {
   return (
     <StyledLayout className="layout">
       <Navbar setTheme={setTheme} />
       <StyledMain>{children}</StyledMain>
-      <Footer />
+      <StyledFooter />
     </StyledLayout>
   );
 };

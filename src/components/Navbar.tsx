@@ -7,7 +7,7 @@ import {
   Box,
   styled,
   Tooltip,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   AddShoppingCart,
   Brightness4,
@@ -43,40 +43,40 @@ const Navbar: React.FC<any> = ({ setTheme }) => {
   );
 
   const handelChangeTheme = () => {
-    setTheme(activeTheme.palette.type == "light" ? darkTheme : lightTheme);
+    setTheme(activeTheme.palette.mode == "light" ? darkTheme : lightTheme);
     toggleTheme();
   };
 
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="sticky">
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           My Shopping App
         </Typography>
 
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <Tooltip title={`View mode ${activeTheme.palette.type}`}>
+          <Tooltip title={`View mode ${activeTheme.palette.mode}`}>
             <StyledIconButton onClick={() => handelChangeTheme()}>
-              {activeTheme.palette.type === "light" ? (
+              {activeTheme.palette.mode === "light" ? (
                 <Brightness7 />
               ) : (
                 <Brightness4 />
               )}
             </StyledIconButton>
           </Tooltip>
+          <Link href="/">
+            <Tooltip title="View Products Page">
+              <StyledIconButton aria-label="show product page" color="inherit">
+                <List />
+              </StyledIconButton>
+            </Tooltip>
+          </Link>
           <Link href="/cart">
             <Tooltip title="View Cart Page">
               <StyledIconButton aria-label="show cart count" color="inherit">
                 <Badge badgeContent={totalQuantity} color="error">
                   <AddShoppingCart />
                 </Badge>
-              </StyledIconButton>
-            </Tooltip>
-          </Link>
-          <Link href="/">
-            <Tooltip title="View Products Page">
-              <StyledIconButton aria-label="show product page" color="inherit">
-                <List />
               </StyledIconButton>
             </Tooltip>
           </Link>

@@ -4,7 +4,7 @@ import CartItem from "../components/CartItem";
 import { NextPage } from "next";
 import { RootState } from "@/store/store";
 import { initCartItems } from "@/store/cartSlice";
-import { Box, List, styled, Typography } from "@material-ui/core";
+import { Box, List, styled, Typography } from "@mui/material";
 
 const StyledTotalText = styled(Typography)({
   textAlign: "right",
