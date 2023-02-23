@@ -12,6 +12,15 @@ yarn dev
 pnpm dev
 ```
 
+Playwright test:
+
+```bash
+npm run build
+npm start
+npm run test:e2e
+```
+npm run test:e2e
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.

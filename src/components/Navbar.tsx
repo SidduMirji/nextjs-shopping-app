@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import {
   AddShoppingCart,
+  Apps,
   Brightness4,
   Brightness7,
-  List,
 } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
@@ -54,7 +54,7 @@ const Navbar: React.FC<any> = ({ setTheme }) => {
           My Shopping App
         </Typography>
 
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        <Box sx={{ display: { md: "flex" } }}>
           <Tooltip title={`View mode ${activeTheme.palette.mode}`}>
             <StyledIconButton onClick={() => handelChangeTheme()}>
               {activeTheme.palette.mode === "light" ? (
@@ -67,7 +67,7 @@ const Navbar: React.FC<any> = ({ setTheme }) => {
           <Link href="/">
             <Tooltip title="View Products Page">
               <StyledIconButton aria-label="show product page" color="inherit">
-                <List />
+                <Apps />
               </StyledIconButton>
             </Tooltip>
           </Link>

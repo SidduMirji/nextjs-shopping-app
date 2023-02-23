@@ -1,8 +1,19 @@
 import React from "react";
 import { Product } from "@/types/types";
 import useProductCart from "@/hooks/useProductCart";
-import { Card, CardActions, CardContent, CardMedia, IconButton, styled, Tooltip, Typography } from "@mui/material";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  IconButton,
+  styled,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { AddShoppingCart } from "@material-ui/icons";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface ProductCardProps {
   product: Product;
@@ -24,11 +35,22 @@ const StyledCardActions = styled(CardActions)({
   marginTop: "auto",
 });
 
-const StyledCartButton = styled(IconButton)({
-  border: "solid .5px #151eef",
-});
+interface StyledCartButtonProps {
+  isSelected: boolean;
+}
+
+const StyledCartButton = styled(IconButton)<StyledCartButtonProps>(
+  ({ theme, isSelected }) => ({
+    backgroundColor: isSelected ? theme.palette.primary.main : "",
+    "&:hover": {
+      backgroundColor: isSelected ? theme.palette.primary.main : "",
+    },
+    color: isSelected ? theme.palette.primary.contrastText : "",
+  })
+);
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   const { addToCartHandler } = useProductCart();
   const handleAddToCart = () => {
     addToCartHandler(product);
@@ -54,12 +76,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <StyledCardActions>
         <Typography variant="h6">${product.price.toFixed(2)}</Typography>
         <Tooltip title="Add to cart">
-        <StyledCartButton
-          aria-label="Add to cart"
-          onClick={() => handleAddToCart()}
-        >
-          <AddShoppingCart />
-        </StyledCartButton>
+          <StyledCartButton
+            aria-label="Add to cart"
+            isSelected={cartItems.some(({ id }) => id === product.id)}
+            onClick={() => handleAddToCart()}
+          >
+            <AddShoppingCart />
+          </StyledCartButton>
         </Tooltip>
       </StyledCardActions>
     </StyledProductCard>

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "@/store/store";
 import useToggleTheme from "@/hooks/useThemeToggle";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import ErrorBoundary from "@/utils/ErrorBoundary";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -27,15 +28,19 @@ function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
+        <title>My Shopping App</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
+
           <Layout setTheme={setTheme}>
             <Container maxWidth="lg">
-              <Component {...pageProps} />
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
             </Container>
           </Layout>
         </Provider>
